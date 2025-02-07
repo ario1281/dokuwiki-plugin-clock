@@ -132,6 +132,7 @@ jQuery(() => {
             this.m_eTime.appendChild(minute);
             this.m_eTime.appendChild(hour);
 
+
             // animation
             const fff = (360 / 1000) * this.milliseconds();
             const ss  = (360 / 60) * this.seconds() + (fff / 60);
