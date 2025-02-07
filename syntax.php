@@ -162,7 +162,7 @@ class syntax_plugin_clock extends DokuWiki_Syntax_Plugin {
 		if (!$data['is_help']) { return ""; }
 
 		// point to plugin page by default
-		$link = $data['link'] ?? "doku>plugin:clock";
+		$link = empty($data['link']) ? "doku>plugin:clock" : $data['link'];
 		$info = "[[$link|Infomation]]";
 
 		$info = p_render('xhtml', p_get_instructions($info), $info);
