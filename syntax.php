@@ -4,8 +4,8 @@
  * @brief      Show a clock in wikipage
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Luis Machuca Bezzaza <luis.machuca [at] gulix.cl>
- * @version    2.5
- * @date       2025-02-05
+ * @version    3.0
+ * @date       2025-02-07
  * @link       http://www.dokuwiki.org/plugin:clock
  *
  *  This plugin's purpose is to display a clock using both 
@@ -38,7 +38,7 @@ class syntax_plugin_clock extends DokuWiki_Syntax_Plugin {
 		);
 	}
  
-    function handle($match, $state, $pos, &$handler){
+    function handle($match, $state, $pos, $handler){
       $data = array();
       /* get config clock value */
       // clock
@@ -71,7 +71,7 @@ class syntax_plugin_clock extends DokuWiki_Syntax_Plugin {
       /* Are we ready yet? */
       return $data;
     }  
-    function render($mode, &$renderer, $data) {
+    function render($mode, $renderer, $data) {
         static $wasRendered = false;
         if ($wasRendered) { return true; }
 
