@@ -53,7 +53,7 @@ class syntax_plugin_clock extends DokuWiki_Syntax_Plugin {
   
       // helpbar
       $help = array();
-      $help['is_help'] = $this->getConf('clock_is_help');
+      $help['is_help'] = $this->getConf('clock_is_helpbar');
       $help['link']    = $this->getConf('clock_infopage');
   
       $conf = array();

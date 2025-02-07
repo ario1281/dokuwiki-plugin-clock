@@ -45,7 +45,7 @@ class dwClock {
     year() { return this.m_time.getFullYear(); }
     month() { return this.m_time.getMonth() + 1; }
     date() { return this.m_time.getDate(); }
-    week() { return this.m_days[this.m_time.getDay()]; }
+    day() { return this.m_days[this.m_time.getDay()]; }
 
     hours() { return this.m_time.getHours(); }
     minutes() { return this.m_time.getMinutes(); }
@@ -70,7 +70,7 @@ class dwClock {
         fmt = fmt.replace('%Y', this.year().toString());
         fmt = fmt.replace('%M', this.month().toString().padStart(2, '0'));
         fmt = fmt.replace('%D', this.date().toString().padStart(2, '0'));
-        fmt = fmt.replace('%W', LANG.plugins.clock[this.week()]);
+        fmt = fmt.replace('%W', LANG.plugins.clock[this.day()]);
 
         // assign text to element with class as 'clock_date' variable
         this.m_eDate.innerHTML = ` ${fmt} `;
