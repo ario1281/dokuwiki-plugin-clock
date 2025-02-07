@@ -97,9 +97,14 @@ jQuery(() => {
             this.create_clock();
             super.init();
         }
+        update() {
+            this.tick();
+            this.display_date();
+        }
 
         create_clock() {
             const $eTime = jQuery(`div.${CLOCK_TIME}`).empty();
+
             const $dials = jQuery('<div>').addClass('dials');
             for (var i = 1; i <= 12; i++) {
                 $dials.append(jQuery('<div>')
@@ -119,15 +124,32 @@ jQuery(() => {
             const minute = this.m_eTime.querySelector('.hand.minute');
             const hour   = this.m_eTime.querySelector('.hand.hour');
 
+            second.style.animation = `rotate-s ${60}s linear infinite`;
+            minute.style.animation = `rotate-m ${60 * 60}s linear infinite`;
+            hour.style.animation   = `rotate-h ${60 * 60 * 12}s linear infinite`;
+
             this.m_eTime.style.height = `${this.m_eTime.scrollWidth * 0.75}px`;
 
-            const ss = (360 / 60) * this.seconds();
-            const mm = (360 / 60) * this.minutes() + (ss / 60);
-            const HH = (360 / 12) * this.hours() + (mm / 12);
+            const fff = (360 / 1000) * this.milliseconds();
+            const ss  = (360 / 60) * this.seconds() + (fff / 60);
+            const mm  = (360 / 60) * this.minutes() + (ss / 60);
+            const HH  = (360 / 12) * this.hours() + (mm / 12);
 
-            second.style.transform = `rotate(${ss}deg)`;
-            minute.style.transform = `rotate(${mm}deg)`;
-            hour.style.transform   = `rotate(${HH}deg)`;
+            const animation = document.createElement('style');
+            animation.innerHTML = `
+            @keyframes rotate-s {
+                0% { transform: rotate(${ss}deg); }
+                100% { transform: rotate(${ss + 360}deg); }
+            }
+            @keyframes rotate-m {
+                0% { transform: rotate(${mm}deg); }
+                100% { transform: rotate(${mm + 360}deg); }
+            }
+            @keyframes rotate-h {
+                0% { transform: rotate(${HH}deg); }
+                100% { transform: rotate(${HH + 360}deg); }
+            }`;
+            document.head.appendChild(animation);
         }
     }
     class dwClock_Digital extends dwClock {
