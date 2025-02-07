@@ -96,18 +96,44 @@ jQuery(() => {
     // 'dwClock' inherited class
     class dwClock_Analog extends dwClock {
         init() {
-            this.create_clock();
-            super.init();
-        }
-
-        create_clock() {
             this.m_eTime.innerHTML = '';
-
             this.create_dials();
             this.create_hands();
 
-            this.display_time();
+            super.init();
+        }
 
+        create_dials() {
+            const dials = document.createElement('div');
+            dials.classList.add('dials');
+            for (var i = 1; i <= 12; i++) {
+                const elem = document.createElement('div');
+                elem.classList.add(i);
+                elem.style.transform = `rotate(${i * 30}deg)`;
+
+                dials.appendChild();
+            }
+            this.m_eTime.appendChild(dials);
+        }
+        create_hands() {
+            // init
+            const second = document.createElement('div');
+            const minute = document.createElement('div');
+            const hour   = document.createElement('div');
+
+            second.className = 'hand second';
+            minute.className = 'hand minute';
+            hour.className   = 'hand hour';
+
+            second.style.animation = `rotate-s ${60}s linear infinite`;
+            minute.style.animation = `rotate-m ${60 * 60}s linear infinite`;
+            hour.style.animation   = `rotate-h ${60 * 60 * 12}s linear infinite`;
+
+            this.m_eTime.appendChild(second);
+            this.m_eTime.appendChild(minute);
+            this.m_eTime.appendChild(hour);
+
+            // animation
             const fff = (360 / 1000) * this.milliseconds();
             const ss  = (360 / 60) * this.seconds() + (fff / 60);
             const mm  = (360 / 60) * this.minutes() + (ss / 60);
@@ -128,35 +154,6 @@ jQuery(() => {
                 100% { transform: rotate(${HH + 360}deg); }
             }`;
             document.head.appendChild(animation);
-        }
-        create_dials() {
-            const dials = document.createElement('div');
-            dials.classList.add('dials');
-            for (var i = 1; i <= 12; i++) {
-                const elem = document.createElement('div');
-                elem.classList.add(i);
-                elem.style.transform = `rotate(${i * 30}deg)`;
-
-                dials.appendChild();
-            }
-            this.m_eTime.appendChild(dials);
-        }
-        create_hands() {
-            const second = document.createElement('div');
-            const minute = document.createElement('div');
-            const hour   = document.createElement('div');
-
-            second.className = 'hand second';
-            minute.className = 'hand minute';
-            hour.className   = 'hand hour';
-
-            second.style.animation = `rotate-s ${60}s linear infinite`;
-            minute.style.animation = `rotate-m ${60 * 60}s linear infinite`;
-            hour.style.animation   = `rotate-h ${60 * 60 * 12}s linear infinite`;
-
-            this.m_eTime.appendChild(second);
-            this.m_eTime.appendChild(minute);
-            this.m_eTime.appendChild(hour);
         }
 
         display_time() {
