@@ -16,6 +16,8 @@ const DRAW_ID = 'dw_clock_object';
 const CLOCK_DATE = 'clock_date';
 const CLOCK_TIME = 'clock_time';
 
+const DOKU_PLUGIN = DOKU_BASE + 'lib/plugins/clock';
+
 // timer object
 let dwClockTimer;
 
