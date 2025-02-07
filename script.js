@@ -96,24 +96,36 @@ jQuery(() => {
     // 'dwClock' inherited class
     class dwClock_Analog extends dwClock {
         init() {
-            this.create_clock();
+            this.m_eTime.innerHTML = '';
+            this.create_dials();
+            this.create_hands();
+
             super.init();
         }
 
-        create_clock() {
-            const $eTime = jQuery(`div.${CLOCK_TIME}`).empty();
-            const $dials = jQuery('<div>').addClass('dials');
+        create_dials() {
+            const dials = document.createElement('div');
             for (var i = 1; i <= 12; i++) {
-                $dials.append(jQuery('<div>')
-                    .addClass(`${i}`)
-                    .css('transform', `rotate(${i * 30}deg)`)
-                );
-            }
-            $eTime.append($dials);
+                const elem = document.createElement('div');
+                elem.classList.add(i);
+                elem.style.transform = `rotate(${i * 30}deg)`;
 
-            $eTime.append(jQuery('<div>').addClass('hand hour'));
-            $eTime.append(jQuery('<div>').addClass('hand minute'));
-            $eTime.append(jQuery('<div>').addClass('hand second'));
+                dials.appendChild(elem);
+            }
+            this.m_eTime.appendChild(dials);
+        }
+        create_hands() {
+            const second = document.createElement('div');
+            const minute = document.createElement('div');
+            const hour   = document.createElement('div');
+
+            second.className = '.hand.second';
+            minute.className = '.hand.minute';
+            hour.className   = '.hand.hour';
+
+            this.m_eTime.appendChild(second);
+            this.m_eTime.appendChild(minute);
+            this.m_eTime.appendChild(hour);
         }
 
         display_time() {
