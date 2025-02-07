@@ -109,7 +109,6 @@ jQuery(() => {
                 const elem = document.createElement('div');
                 elem.classList.add(i);
                 elem.style.transform = `rotate(${i * 30}deg)`;
-
                 dials.appendChild(elem);
             }
             this.m_eTime.appendChild(dials);
