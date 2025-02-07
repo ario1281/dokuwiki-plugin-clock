@@ -35,6 +35,8 @@ class dwClock {
         this.m_eDate = document.querySelector(`#${WRAP_ID} .${CLOCK_DATE}`);
         this.m_eTime = document.querySelector(`#${WRAP_ID} .${CLOCK_TIME}`);
         this.m_eConf = document.querySelector(`#${WRAP_ID} .varidates`);
+
+        this.init();
     }
 
     // accesser
@@ -91,6 +93,27 @@ jQuery(() => {
 
     // 'dwClock' inherited class
     class dwClock_Analog extends dwClock {
+        init() {
+            this.create_clock();
+            super.init();
+        }
+
+        create_clock() {
+            const $eTime = jQuery(`div.${CLOCK_TIME}`).empty();
+            const $dials = jQuery('<div>').addClass('dials');
+            for (var i = 1; i <= 12; i++) {
+                $dials.append(jQuery('<div>')
+                    .addClass(`${i}`)
+                    .css('transform', `rotate(${i * 30}deg)`)
+                );
+            }
+            $eTime.append($dials);
+
+            $eTime.append(jQuery('<div>').addClass('hand hour'));
+            $eTime.append(jQuery('<div>').addClass('hand minute'));
+            $eTime.append(jQuery('<div>').addClass('hand second'));
+        }
+
         display_time() {
             const second = this.m_eTime.querySelector('.hand.second');
             const minute = this.m_eTime.querySelector('.hand.minute');
@@ -111,38 +134,23 @@ jQuery(() => {
         display_time() {
             // format it as ISO 8601 text
             let fmt = this.m_eConf.getAttribute('fmt_time').toLowerCase();
+            fmt = fmt.replace('%f', this.milliseconds().toString().padStart(2, '0'));
             fmt = fmt.replace('%s', this.seconds().toString().padStart(2, '0'));
             fmt = fmt.replace('%m', this.minutes().toString().padStart(2, '0'));
             fmt = fmt.replace('%h', this.hours().toString().padStart(2, '0'));
 
-            // assign text to element with class as 'clock_time' variable
+            // assign text to element
             this.m_eTime.innerHTML = ` ${fmt} `;
         }
     }
 
-    const elem = document.querySelector(`#${WRAP_ID} .${CLOCK_TIME}`);
     // analog or digital
     dwClockTimer = new dwClock();
+    const elem = document.querySelector(`#${WRAP_ID} .${CLOCK_TIME}`);
     if (elem.className.includes('analog')) {
-        // create analog clock
-        const $eTime = jQuery(`div.${CLOCK_TIME}`).empty();
-        const $dials = jQuery('<div>').addClass('dials');
-        for (i = 1; i <= 12; i++) {
-            $dials.append(jQuery('<div>')
-                .addClass(`${i}`)
-                .css('transform', `rotate(${i * 30}deg)`)
-            );
-        }
-        $eTime.append($dials);
-        $eTime.append(jQuery('<div>').addClass('hand hour'));
-        $eTime.append(jQuery('<div>').addClass('hand minute'));
-        $eTime.append(jQuery('<div>').addClass('hand second'));
-
-        //
         dwClockTimer = new dwClock_Analog();
     }
     if (elem.className.includes('digital')) {
-        //
         dwClockTimer = new dwClock_Digital();
     }
     

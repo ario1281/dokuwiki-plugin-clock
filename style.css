@@ -3,207 +3,466 @@
  * @brief      Default styles for the "clock" plugin
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Luis Machuca Bezzaza  <luis.machuca [at] gulix.cl>
- * @version    1.5
+ * @version    3.0
+ * @date       2025-02-05
  * @link       http://www.dokuwiki.org/plugin:clock
  */
+/* variables */
+#clock_wrapper {
+  --clock-border: 2px solid gray;
+  --clock-border-radius: 2px;
+  --clock-font-size: 24px;
 
-/* This file sets the default style for the "clock" plugin.
- * Information available on wikipage.
- */
-#dw_clock_object {
-  min-width: 6em;
-  padding: 0 2px;
-  }
+  --clock-bin-font-size: large;
+  --clock-bin-digit0: '○';
+  --clock-bin-digit1: '●';
+}
+/* base style */
+#clock_wrapper {
+  padding: 0;
+  border: var(--clock-border);
 
-/** 
- * ---------------------------------------------------------------------
- * Style #0    : plain
- * Description : pretty plain
- * Features    : 
- * With this style the face itself is not stulized, only some layout
- * attributes are given as well as default style for the helpbar.
- */
-#dw_clock_object .face.plain {
-  position: relative;
+  -webkit-border-radius: var(--clock-border-radius);
+  -moz-border-radius: var(--clock-border-radius);
+  -ms-border-radius: var(--clock-border-radius);
+  border-radius: var(--clock-border-radius);
+}
+
+/* 
+* Helpbar styling
+* */
+#clock_wrapper p.helpbar {
+  --helpbar-border-radius: 6px;
+
   margin: 0 2em;
-  }
+  padding: 0 0.5em;
+  background-color: __background_alt__;
+  border: 1px solid __existing__;
+  font-size: 90%;
+
+  -webkit-border-radius: var(--helpbar-border-radius);
+  -moz-border-radius: var(--helpbar-border-radius);
+  -ms-border-radius: var(--helpbar-border-radius);
+  border-radius: var(--helpbar-border-radius);
+}
+
+/*
+* Clock styling
+* */
+#clock_wrapper #dw_clock_object {
+  display: block;
+  min-width: 6em;
+  margin: 0 auto;
+  padding: 4px;
+
+  text-align: center;
+
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+}
+
+#clock_wrapper #dw_clock_object .clock_date {
+  font-size: calc(var(--clock-font-size) * 0.52);
+}
+
+/* style of digital clock */
+#clock_wrapper #dw_clock_object .clock_time.digital {
+  font-size: var(--clock-font-size);
+}
+/* style of analog clock */
+#clock_wrapper #dw_clock_object .clock_time.analog {
+  position: relative;
+  margin: 15px auto;
+  max-width: 700px;
+}
+#clock_wrapper #dw_clock_object .clock_time.analog::after {
+  --clock-length: 14px;
+  --clock-border-radius: 50%;
+
+  content: "";
+
+  position: absolute;
+  width: var(--clock-length);
+  height: var(--clock-length);
+  top: calc(50% - var(--clock-length) / 2);
+  left: calc(50% - var(--clock-length) / 2);
+
+  -webkit-border-radius: var(--clock-border-radius);
+  -moz-border-radius: var(--clock-border-radius);
+  -ms-border-radius: var(--clock-border-radius);
+  border-radius: var(--clock-border-radius);
+}
+
+/* dials styling */
+#clock_wrapper #dw_clock_object .clock_time.analog .dials {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#clock_wrapper #dw_clock_object .clock_time.analog .dials>div {
+  --clock-dial-width: 6px;
+
+  position: absolute;
+  width: var(--clock-dial-width);
+  height: 50%;
+  top: 0;
+  left: calc(50% - var(--clock-dial-width) / 2);
+
+  transform-origin: bottom;
+}
+#clock_wrapper #dw_clock_object .clock_time.analog .dials>div::after {
+  content: "";
+
+  position: absolute;
+  width: var(--clock-dial-width);
+  height: 15px;
+  top: 0;
+  left: calc(50% - var(--clock-dial-width) / 2);
+}
+
+/* hands styling */
+#clock_wrapper #dw_clock_object .clock_time.analog .hand {
+  --clock-border-radius: 5em;
+
+  position: absolute;
+  bottom: 50%;
+  transform-origin: 50% 100%;
+
+  -webkit-border-radius: var(--clock-border-radius);
+  -moz-border-radius: var(--clock-border-radius);
+  -ms-border-radius: var(--clock-border-radius);
+  border-radius: var(--clock-border-radius);
+}
+
+#clock_wrapper #dw_clock_object .clock_time.analog .hand.hour {
+  --clock-hour-width: 3px;
+
+  width: var(--clock-hour-width);     /* 線幅 */
+  height: 30%;                        /* 線長 */
+  left: calc(50% - var(--clock-hour-width) / 2);
+}
+#clock_wrapper #dw_clock_object .clock_time.analog .hand.minute {
+  --clock-minute_width: 3px;
+
+  width: var(--clock-minute_width);   /* 線幅 */
+  height: 45%;                        /* 線長 */
+  left: calc(50% - var(--clock-minute_width) / 2);
+}
+#clock_wrapper #dw_clock_object .clock_time.analog .hand.second {
+  --clock-second_width: 1.5px;
+
+  width: var(--clock-second_width);   /* 線幅 */
+  height: 55%;                        /* 線長 */
+  left: calc(50% - var(--clock-second_width) / 2);
+}
 
 
 /** 
- * ---------------------------------------------------------------------
- * Style #1    : default
- * Description : a light-coloured wall-like clock
- * Features    : monospaced font, wide margin and dark borders,
- *               with the face colour following the template theme
- */
-#dw_clock_object .face.default {
-  position: relative;
-  /*width: 120px;*/
-  margin: auto 6px;
-  }
+* ---------------------------------------------------------------------
+* Style #0    : plain
+* Description : pretty plain
+* Features    : 
+* With this style the face itself is not stulized, only some layout
+* attributes are given as well as default style for the helpbar.
+*/
+/* variables */
+#clock_wrapper.plain {
+  --custom-color: __text__;
+  --custom-color-alt: __text_alt__;
+  --custom-border-color: __text_alt__;
+  --custom-bg-color: __background_alt__;
+}
+/* base style */
+#clock_wrapper.plain {
+  background-color: var(--custom-bg-color);
+  border: 4px inset var(--custom-border-color);
+}
 
-#dw_clock_object .face.default {
-  display: block;
+#clock_wrapper.plain #dw_clock_object {
   font-family: monospace;
-  font-size: 1.5em;
-  text-align: center;
-  color: __text__;
-  border: 4px inset __text_alt__;
-  background-color: __background_alt__;
-  }
+  color: var(--custom-color);
+}
+
+/* style of digital clock */
+#clock_wrapper.plain #dw_clock_object .clock_time.digital {}
+/* style of analog clock */
+#clock_wrapper.plain #dw_clock_object .clock_time.analog::after {
+  background-color: var(--custom-color);
+}
+
+/* dials styling */
+#clock_wrapper.plain #dw_clock_object .clock_time.analog .dials>div::after {
+  background-color: var(--custom-color);
+}
+
+/* hands styling */
+#clock_wrapper.plain #dw_clock_object .clock_time.analog .hand.hour,
+#clock_wrapper.plain #dw_clock_object .clock_time.analog .hand.minute {
+  background-color: var(--custom-color);
+}
+#clock_wrapper.plain #dw_clock_object .clock_time.analog .hand.second {
+  background-color: var(--custom-color-alt);
+}
 
 
 /**
- * ---------------------------------------------------------------------
- * Style #2    : aradio
- * Description : some description
- * Features    : a clock using a digital clock font in yellow face in a 
- *               black background and minor shadow.
- *
- * ---Warning---
- * This style makes use of CSS3 @font-face specification, 
- * which is only supported by decent (or incredible, like Opera) web browsers.
- * **Check the plugin page for support and indications** 
- *
- * For full experience, it is _recommended_ to make the typeface available  
- * to clients via a direct download link, and source that URL from here.
- * Take into consideration the licensing of the typeface, and offer a 
- * fallback or switch if it is now available at last as Freeware.
- * ---End Warning---
- */
+* ---------------------------------------------------------------------
+* Style #1    : neon
+* Description : like luminous
+* Features    : a clock using neon in a black background and minor shadow.
+* 
+*/
+/* variables */
+#clock_wrapper.neon {
+  --custom-color: #d9ecff;
+  --custom-color-alt: #000;
+  --custom-shadow-color: #0aafe6;
+  --custom-bg-color: #15151e;
 
+  --custom-shadow: 0 0 20px var(--custom-shadow-color);
+}
+/* base style */
+#clock_wrapper.neon {
+  background-color: var(--custom-bg-color);
+}
+
+#clock_wrapper.neon #dw_clock_object {
+  font-family:
+      'Share Tech Mono',
+      monospace;
+  color: var(--custom-color);
+  text-shadow: var(--custom-shadow);
+}
+
+/* style of digital clock */
+#clock_wrapper.neon #dw_clock_object .clock_time.digital {}
+/* style of analog clock */
+#clock_wrapper.neon #dw_clock_object .clock_time.analog::after {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow);
+}
+
+/* dials styling */
+#clock_wrapper.neon #dw_clock_object .clock_time.analog .dials>div::after {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow);
+}
+
+/* hands styling */
+#clock_wrapper.neon #dw_clock_object .clock_time.analog .hand.hour,
+#clock_wrapper.neon #dw_clock_object .clock_time.analog .hand.minute {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow);
+}
+#clock_wrapper.neon #dw_clock_object .clock_time.analog .hand.second {
+  background-color: var(--custom-color-alt);
+  box-shadow: var(--custom-shadow);
+}
+
+
+/**
+* ---------------------------------------------------------------------
+* Style #2    : aradio
+* Description : some description
+* Features    : 
+* 
+* ---Warning---
+* This style makes use of CSS3 @font-face specification, 
+* which is only supported by decent (or incredible, like Opera) web browsers.
+* **Check the plugin page for support and indications** 
+*
+* For full experience, it is _recommended_ to make the typeface available  
+* to clients via a direct download link, and source that URL from here.
+* Take into consideration the licensing of the typeface, and offer a 
+* fallback or switch if it is now available at last as Freeware.
+* ---End Warning---
+*/
+/* variables */
 @font-face {
   font-family: 'Atomic Clock Radio';
   src: local('Atomic Clock Radio');
   /* src: url(path/to/your/copy/of/atomicclockradio.ttf) format('truetype'); */
-  }
+}
+#clock_wrapper.aradio {
+  --custom-color: #585950;
+  --custom-shadow-color: #42443c;
+  --custom-bg-color: #b9bbaa;
 
-#dw_clock_object .face.aradio {
-  padding: 4px;
-  padding-right: 1em;
-  background-color: #c4c8ee;
-  border: 2px solid #b6b6d8;
-  font-family: "Atomic Clock Radio", fantasy;
-  font-size: 14pt;
-  text-align: right;
-  letter-spacing: 0.6pt;
-  text-shadow: -2px 1px #884446;
-  color: #848861;
-  }
+  --custom-shadow: 0 0 15px var(--custom-shadow-color);
+}
+/* base style */
+#clock_wrapper.aradio {
+  background-color: var(--custom-bg-color);
+}
 
-#dw_clock_object .face.aradio span.sep {
-  color: #808080;
-  font-weight: bold;
-  }
+#clock_wrapper.aradio #dw_clock_object {
+  font-family:
+      'Atomic Clock Radio',
+      sans-serif;
+  color: var(--custom-color);
+  text-shadow: var(--custom-shadow);
+}
+
+/* style of digital clock */
+#clock_wrapper.aradio #dw_clock_object .clock_time.digital {}
+/* style of analog clock */
+#clock_wrapper.aradio #dw_clock_object .clock_time.analog::after {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow);
+}
+
+/* dials styling */
+#clock_wrapper.aradio #dw_clock_object .clock_time.analog .dials>div::after {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow);
+}
+
+/* hands styling */
+#clock_wrapper.aradio #dw_clock_object .clock_time.analog .hand.hour,
+#clock_wrapper.aradio #dw_clock_object .clock_time.analog .hand.minute {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow);
+}
+#clock_wrapper.aradio #dw_clock_object .clock_time.analog .hand.second {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow);
+}
 
 
 /**
- * ---------------------------------------------------------------------
- * Style #3    : tv24
- * Description : "24"-like digital clock
- * Features    : a clock using a digital clock font with yellow face in a 
- *               black background and a shadow, degrading to monospace
- *               if the digital clock is unavailable.
- *
- * ---Warning---
- * This style makes use of CSS3 @font-face specification, 
- * which is only supported by decent (or incredible, like Opera) web browsers.
- * **Check the plugin page for support and indications** 
- *
- * For full experience, it is _recommended_ to make the typeface available  
- * to clients via a direct download link, and source that URL from here.
- * Take into consideration the licensing of the typeface, and offer a 
- * fallback or switch if it is now available at last as Freeware.
- * ---End Warning---
- */
-
-/**
- *  Warning: this defines a Truetype typeface with the following license:
- * free-for-noncommercial-use (URW Software).
- */
+* ---------------------------------------------------------------------
+* Style #3    : tv24
+* Description : clock similar to the film "24"
+* Features    : a clock using a digital clock font with yellow face in a 
+*               black background and a shadow, degrading to monospace
+*               if the digital clock is unavailable.
+* 
+* This style uses four font fallbacks: 'LCDRegular', 'LCD', 'Segment7Standard' and 'dseg7classic'.
+* They are not provided here, they must be available either client-side or provided via an external source
+* (e.g.: via userstyle.css)
+*/
+/* variables */
 @font-face {
-  font-family: 'lcdd';
-  src: local('LCDd');
+  font-family: 'LCD';
+  src: local('LCD');
   /* src: url(path/to/your/copy/of/lcd.ttf) format('truetype'); */
-  }
-
-/**
- *  Warning: this defines a Truetype typeface with the following license:
- * freeware (????).
- */
+}
 @font-face {
   font-family: 'Digital Readout';
   src: local('Digital Readout');
   /* src: url(path/to/your/copy/of/digitalreadout.ttf) format('truetype'); */
-  }
+}
+#clock_wrapper.tv24 {
+  --custom-color: yellow;
+  --custom-color-alt: navy;
+  --custom-shadow-color: #737300;
+  --custom-shadow-color-alt: #000064;
+  --custom-border-color:navy;
+  --custom-bg-color: #1a1a00;
 
-#dw_clock_object .face.tv24 {
-  width: 75%;
-  min-width: 6em;
-  background-color: black;
-  border: 2px solid navy;
-  line-height: 20pt;
-  text-align: center;
-  font-family: "Digital Readout", "lcdd", monospace;
-  font-size: 14pt;
-  text-shadow: 2px 2px #404020;
-  letter-spacing: 0.2em; 
-  color: yellow;
-  }
+  --custom-shadow: 0 0 20px var(--custom-shadow-color);
+  --custom-shadow: 0 0 20px var(--custom-shadow-color-alt);
+}
+/* base style */
+#clock_wrapper.tv24 {
+  background-color: var(--custom-bg-color);
+}
 
-#dw_clock_object .face.tv24 .info {
-  position: absolute;
-  right: 0;
-  bottom: 0; 
-  border: 2px solid black;
-  }
+#clock_wrapper.tv24 #dw_clock_object {
+  font-family:
+      'Atomic Clock Radio',
+      sans-serif;
+  color: var(--custom-color);
+  text-shadow: var(--custom-shadow);
+}
 
-#dw_clock_object .face.tv24 .info:hover {
-  border: 2px solid __existing__;
-  }
+/* style of digital clock */
+#clock_wrapper.tv24 #dw_clock_object .clock_time.digital {}
+/* style of analog clock */
+#clock_wrapper.tv24 #dw_clock_object .clock_time.analog::after {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow);
+}
+
+/* dials styling */
+#clock_wrapper.tv24 #dw_clock_object .clock_time.analog .dials>div::after {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow);
+}
+
+/* hands styling */
+#clock_wrapper.tv24 #dw_clock_object .clock_time.analog .hand.hour,
+#clock_wrapper.tv24 #dw_clock_object .clock_time.analog .hand.minute {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow);
+}
+#clock_wrapper.tv24 #dw_clock_object .clock_time.analog .hand.second {
+  background-color: var(--custom-color-alt);
+  box-shadow: var(--custom-shadow);
+}
+
 
 /**
- * ---------------------------------------------------------------------
- * Style #4    : bluebox
- * Description : "24"-like digital clock
- * Features    : a blue box with a white typeface, shadows.
- *
- *
- * ---Warning---
- * This style makes use of CSS3 @font-face specification, 
- * which is only supported by decent (or incredible, like Opera) web browsers.
- * **Check the plugin page for support and indications** 
- *
- * For full experience, it is _recommended_ to make the typeface available  
- * to clients via a direct download link, and source that URL from here.
- * Take into consideration the licensing of the typeface, and offer a 
- * fallback or switch if it is now available at last as Freeware.
- * ---End Warning---
- */
-#dw_clock_object .face.bluebox {
-  width: 75%;
-  max-width: 8em;
-  background-color: #2222aa;
-  border: 4px solid navy;
-  border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px;
-  line-height: 20pt;
-  text-align: center;
-  font-family: "Liberation", "Helvetica", cursive;
-  font-size: 14pt;
-  text-shadow: -1px 2px #80c080;
-  text-shadow: 2px -1px #882222;
-  letter-spacing: 0.2em; 
-  color: #e0f0e0;
-  }
+* ---------------------------------------------------------------------
+* Style #4    : bluebox
+* Description : "24"-like digital clock
+* Features    : 
+*/
+/* variables */
+#clock_wrapper.tv24 {
+  --custom-color: #e0f0e0;
+  --custom-color-alt: #abbeab;
+  --custom-shadow-color: #80c080;
+  --custom-shadow-color-alt: #882222;
+  --custom-border-color: navy;
+  --custom-bg-color: #2222aa;
 
-/* ---------------------------------------------------------------------
- * Helpbar styling
- */
-#dw_clock_object p.helpbar {
-  margin: 0 2em; 
-  padding: 0 0.5em;
-  background-color: __background_alt__;
-  border: 1px solid __existing__;
-  border-radius: 6px;
-  font-size: 90%;
-  }
+  --custom-shadow1: -2px 3px 20px var(--custom-shadow-color);
+  --custom-shadow1-alt: 3px -2px 20px var(--custom-shadow-color-alt);
+  --custom-shadow2: 0 0 20px var(--custom-shadow-color);
+  --custom-shadow2-alt: 0 0 20px var(--custom-shadow-color-alt);
+}
+/* base style */
+#clock_wrapper.tv24 {
+  background-color: var(--custom-bg-color);
+  border: 4px solid var(--custom-border-color);
+}
+
+#clock_wrapper.tv24 #dw_clock_object {
+  font-family:
+      "Liberation",
+      "Helvetica",
+      cursive;
+  color: var(--custom-color);
+  text-shadow:
+      var(--custom-shadow1),
+      var(--custom-shadow1-alt);
+}
+
+/* style of digital clock */
+#clock_wrapper.tv24 #dw_clock_object .clock_time.digital {}
+/* style of analog clock */
+#clock_wrapper.tv24 #dw_clock_object .clock_time.analog::after {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow2);
+}
+
+/* dials styling */
+#clock_wrapper.tv24 #dw_clock_object .clock_time.analog .dials>div::after {
+  background-color: var(--custom-color);
+  box-shadow:
+      var(--custom-shadow1),
+      var(--custom-shadow1-alt);
+}
+
+/* hands styling */
+#clock_wrapper.tv24 #dw_clock_object .clock_time.analog .hand.hour,
+#clock_wrapper.tv24 #dw_clock_object .clock_time.analog .hand.minute {
+  background-color: var(--custom-color);
+  box-shadow: var(--custom-shadow2);
+}
+#clock_wrapper.tv24 #dw_clock_object .clock_time.analog .hand.second {
+  background-color: var(--custom-color-alt);
+  box-shadow: var(--custom-shadow2-alt);
+}
