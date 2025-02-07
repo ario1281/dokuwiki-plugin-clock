@@ -99,10 +99,6 @@ jQuery(() => {
             this.create_clock();
             super.init();
         }
-        update() {
-            this.tick();
-            this.display_date();
-        }
 
         create_clock() {
             this.m_eTime.innerHTML = '';
@@ -133,7 +129,6 @@ jQuery(() => {
             }`;
             document.head.appendChild(animation);
         }
-
         create_dials() {
             const dials = document.createElement('div');
             dials.classList.add('dials');
