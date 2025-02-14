@@ -3,7 +3,7 @@
  * @brief       Spanish language for jsclock plugin
  * @license:    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author:     Luis Machuca Bezzaza <luis.machuca [at] gulix.cl>
- */
+**/
 
 $lang['clock_style']      = "Nombre del estilo en CSS utilizado para decorar el reloj, <tt>clock_default</tt> por defecto. <br/>Revisa la documentación oficial por más información.";
 $lang['clock_is_helpbar'] = "Muestra/esconde la barra de ayuda (wikienlace con información del plugin).";

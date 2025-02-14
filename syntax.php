@@ -33,45 +33,45 @@ class syntax_plugin_clock extends DokuWiki_Syntax_Plugin {
 	function getPType() { return 'block'; }
 	function connectTo($mode) {
 		$this->Lexer->addSpecialPattern (
-			'^\{\{clock\}\}$', $mode,
-			'plugin_clock'
+			'^\{\{clock\}\}$',
+			$mode, 'plugin_clock'
 		);
 	}
  
-    function handle($match, $state, $pos, $handler){
-      $data = array();
-      /* get config clock value */
-      // clock
-      $clock = array();
-      $clock['id']       = $this->getConf('clock_id');
-      $clock['type']     = $this->getConf('clock_type');
-      $clock['is_date']  = $this->getConf('clock_is_date');
-  
-      $theNoJS = $this->getConf('nojs_fallback');
-      $clock['txt_date'] = !$theNoJS ? '　　　' : 'clock';
-      $clock['txt_time'] = !$theNoJS ? '　　　' : 'plugin';
-  
-      // helpbar
-      $help = array();
-      $help['is_help'] = $this->getConf('clock_is_helpbar');
-      $help['link']    = $this->getConf('clock_infopage');
-  
-      $conf = array();
-      $conf['style'] = $this->getConf('clock_style');
-      $conf['clock'] = $clock;
-      $conf['help']  = $help;
-  
-      /* javascript */
-      $js = array();
-      $js['fmt_date'] = $this->getConf('clock_fmt_date') ?? '%H/%M/%D(%W)';
-      $js['fmt_time'] = $this->getConf('clock_fmt_time') ?? '%h:%m:%s';
-  
-      $data = array('conf' => $conf, 'js' => $js);
-  
-      /* Are we ready yet? */
-      return $data;
+	function handle($match, $state, $pos, Doku_Handler $handler) {
+		$data = array();
+		/* get config clock value */
+		// clock
+		$clock = array();
+		$clock['id']       = $this->getConf('clock_id');
+		$clock['type']     = $this->getConf('clock_type');
+		$clock['is_date']  = $this->getConf('clock_is_date');
+
+		$theNoJS = $this->getConf('nojs_fallback');
+		$clock['txt_date'] = !$theNoJS ? '　　　' : 'clock';
+		$clock['txt_time'] = !$theNoJS ? '　　　' : 'plugin';
+
+		// helpbar
+		$help = array();
+		$help['is_help'] = $this->getConf('clock_is_helpbar');
+		$help['link']    = $this->getConf('clock_infopage');
+
+		$conf = array();
+		$conf['style'] = $this->getConf('clock_style');
+		$conf['clock'] = $clock;
+		$conf['help']  = $help;
+
+		/* javascript */
+		$js = array();
+		$js['fmt_date'] = $this->getConf('clock_fmt_date') ?? '%H/%M/%D(%W)';
+		$js['fmt_time'] = $this->getConf('clock_fmt_time') ?? '%h:%m:%s';
+
+		$data = array('conf' => $conf, 'js' => $js);
+
+		/* Are we ready yet? */
+		return $data;
     }  
-    function render($mode, $renderer, $data) {
+    function render($mode, Doku_Renderer $renderer, $data) {
         static $wasRendered = false;
         if ($wasRendered) { return true; }
 

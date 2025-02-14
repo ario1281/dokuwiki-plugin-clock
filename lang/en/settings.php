@@ -3,7 +3,7 @@
  * @brief       English language for clock plugin
  * @license:    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author:     Luis Machuca Bezzaza <luis.machuca [at] gulix.cl>
- */
+**/
 
 $lang['clock_type']       = "The kind of clock displayed: digital or analog.";
 $lang['clock_style']      = "Decorate clock with this CSS class name, defaults to '<tt>plain</tt>'.<br/>Check plugin documentation for example styles.";

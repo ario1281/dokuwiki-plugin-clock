@@ -3,7 +3,7 @@
  * @brief       Configuration-manager metadata for clock plugin
  * @license:    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author:     Luis Machuca Bezzaza <luis.machuca [at] gulix.cl>
- */
+**/
 
 $meta['clock_type']       = array('multichoice',
 	'_choices' => array('digital', 'analog')

@@ -3,7 +3,7 @@
  * @brief       Default configuration for clock plugin
  * @license:    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author:     Luis Machuca Bezzaza <luis.machuca [at] gulix.cl>
- */
+**/
 
 /* default clock object ID 
   Note 1: this can't be changed from Config Manager

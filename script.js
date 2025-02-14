@@ -19,7 +19,7 @@ const CLOCK_DATE = 'clock_date';
 const CLOCK_TIME = 'clock_time';
 
 // 'smooth' or 'ticktack'
-const clock_style = 'smooth';
+const clock_style = 'ticktack';
 
 // timer object
 let dwClockTimer;
