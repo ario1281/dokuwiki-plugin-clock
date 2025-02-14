@@ -15,7 +15,7 @@
  *
  *  Greetings.
  *        - Luis Machuca Bezzaza a.k.a. 'ryan.chappelle'
- */
+**/
 
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
@@ -25,7 +25,7 @@ if(!defined('DOKU_PLUGIN'))
 /**
  * All DokuWiki plugins to extend the parser/rendering mechanism
  * need to inherit from this class
- */
+**/
 class syntax_plugin_clock extends DokuWiki_Syntax_Plugin {
 	function getType() { return 'substition'; }
 	function getAllowedTypes() { return array(); }
@@ -105,9 +105,9 @@ class syntax_plugin_clock extends DokuWiki_Syntax_Plugin {
 
 	/**
 	 * Summary of create_html_clock
-	 * @param mixed $data ata related to the clock plugin
-	 * @return string     the html of clock-block
-	 */
+	 * @param mixed $data	data related to the clock plugin
+	 * @return string		the html of clock-block
+	**/
 	private function create_html_clock($data) {
 		$theStyle = $data['conf']['style'] ?? 'plain';
 
@@ -129,9 +129,9 @@ class syntax_plugin_clock extends DokuWiki_Syntax_Plugin {
 
 	/**
 	 * Summary of draw_clock
-	 * @param mixed $data clock-related data
-	 * @return string     the contents of clock
-	 */
+	 * @param mixed $data	clock-related data
+	 * @return string		the contents of clock
+	**/
 	private function draw_clock($data) {
 		$theId	 = $data['id'];
 		$theType = $data['type'] ?? 'digital';
@@ -153,11 +153,11 @@ class syntax_plugin_clock extends DokuWiki_Syntax_Plugin {
 
 	/**
 	 * Summary of draw_helpbar
-	 * @param mixed $data helpbar-related data
-	 * @return string     the contents of helpbar
+	 * @param mixed $data	helpbar-related data
+	 * @return string		the contents of helpbar
 	 * 
 	 * The helpbar is displayed only when $conf['clock_helpbar'] is set.
-	 */
+	**/
 	private function draw_helpbar($data) {
 		if (!$data['is_help']) { return ""; }
 
@@ -174,9 +174,9 @@ class syntax_plugin_clock extends DokuWiki_Syntax_Plugin {
 
     /**
 	 * Summary of draw_send_js
-	 * @param mixed $data data to be sent to javascript
-	 * @return string     the contents of send element
-	 */
+	 * @param mixed $data	data to be sent to javascript
+	 * @return string		the contents of send element
+	**/
 	private function draw_send_js($data) {
 		$varidates = "";
 		foreach ($data as $key => $value) {
