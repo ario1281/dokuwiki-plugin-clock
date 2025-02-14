@@ -185,7 +185,7 @@ jQuery(() => {
     }
     
     // ticks the clock
-    setInterval(() => { dwClockTimer.update(); }, 1000);
+    setInterval(() => { dwClockTimer.update(); }, 250);
 });
 
 // end of clock/script.js
