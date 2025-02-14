@@ -4,9 +4,9 @@
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Luis Machuca Bezzaza  <luis.machuca [at] gulix.cl>
  * @version    3.0
- * @date       2025-02-05
+ * @date       2025-02-14
  * @link       http://www.dokuwiki.org/plugin:clock
- */
+**/
 #clock_wrapper {
   /* variables */
   @clock_border: 2px solid gray;
@@ -27,7 +27,7 @@
 
   /* 
    * Helpbar styling
-   * */
+  ** */
   p.helpbar {
     margin: 0 2em;
     padding: 0 0.5em;
@@ -40,7 +40,7 @@
 
   /*
    * Clock styling
-   * */
+  ** */
   #dw_clock_object {
     display: block;
     min-width: 6em;
@@ -269,7 +269,7 @@
  * Take into consideration the licensing of the typeface, and offer a 
  * fallback or switch if it is now available at last as Freeware.
  * ---End Warning---
- */
+**/
 #clock_wrapper.aradio {
   @font-face {
     font-family: 'Atomic Clock Radio';
@@ -380,7 +380,9 @@
 
     .clock_time {
       /* style of digital clock */
-      &.digital {}
+      &.digital {
+        margin: 3px 0 -3px;
+      }
       /* style of analog clock */
       &.analog {
         &::after {
@@ -417,7 +419,7 @@
  * Description : 
  * Features    : 
  * Features    : a bluebox with in yellow color, shadows.
- */
+**/
 #clock_wrapper.bluebox {
   /* variables */
   @custom_bg_color: #2222aa;
@@ -484,7 +486,7 @@
 
 /**
  * functions
- * */
+** */
 .border-radius(@radius) {
   -webkit-border-radius: @radius;
   -moz-border-radius: @radius;
