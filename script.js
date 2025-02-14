@@ -105,6 +105,7 @@ jQuery(() => {
 
         create_dials() {
             const dials = document.createElement('div');
+            dials.classList.add('dials');
             for (var i = 1; i <= 12; i++) {
                 const elem = document.createElement('div');
                 elem.classList.add(i);
@@ -114,6 +115,7 @@ jQuery(() => {
             this.m_eTime.appendChild(dials);
         }
         create_hands() {
+            // init
             const second = document.createElement('div');
             const minute = document.createElement('div');
             const hour   = document.createElement('div');
@@ -122,25 +124,39 @@ jQuery(() => {
             minute.className = 'hand minute';
             hour.className   = 'hand hour';
 
+            second.style.animation = `rotate-s ${60}s linear infinite`;
+            minute.style.animation = `rotate-m ${60 * 60}s linear infinite`;
+            hour.style.animation   = `rotate-h ${60 * 60 * 12}s linear infinite`;
+
             this.m_eTime.appendChild(second);
             this.m_eTime.appendChild(minute);
             this.m_eTime.appendChild(hour);
+
+            // animation
+            const fff = (360 / 1000) * this.milliseconds();
+            const ss  = (360 / 60) * this.seconds() + (fff / 60);
+            const mm  = (360 / 60) * this.minutes() + (ss / 60);
+            const HH  = (360 / 12) * this.hours() + (mm / 12);
+
+            const animation = document.createElement('style');
+            animation.innerHTML = `
+            @keyframes rotate-s {
+                0% { transform: rotate(${ss}deg); }
+                100% { transform: rotate(${ss + 360}deg); }
+            }
+            @keyframes rotate-m {
+                0% { transform: rotate(${mm}deg); }
+                100% { transform: rotate(${mm + 360}deg); }
+            }
+            @keyframes rotate-h {
+                0% { transform: rotate(${HH}deg); }
+                100% { transform: rotate(${HH + 360}deg); }
+            }`;
+            document.head.appendChild(animation);
         }
 
         display_time() {
-            const second = this.m_eTime.querySelector('.hand.second');
-            const minute = this.m_eTime.querySelector('.hand.minute');
-            const hour   = this.m_eTime.querySelector('.hand.hour');
-
             this.m_eTime.style.height = `${this.m_eTime.scrollWidth * 0.75}px`;
-
-            const ss = (360 / 60) * this.seconds();
-            const mm = (360 / 60) * this.minutes() + (ss / 60);
-            const HH = (360 / 12) * this.hours() + (mm / 12);
-
-            second.style.transform = `rotate(${ss}deg)`;
-            minute.style.transform = `rotate(${mm}deg)`;
-            hour.style.transform   = `rotate(${HH}deg)`;
         }
     }
     class dwClock_Digital extends dwClock {
@@ -168,7 +184,7 @@ jQuery(() => {
     }
     
     // ticks the clock
-    setInterval(() => { dwClockTimer.update(); }, 1000);
+    setInterval(() => { dwClockTimer.update(); }, 250);
 });
 
 // end of clock/script.js
