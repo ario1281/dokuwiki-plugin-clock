@@ -8,15 +8,16 @@
  * @link       http://www.dokuwiki.org/plugin:clock
 **/
 
-const DOKU_PLUGIN = DOKU_BASE + 'lib/plugins';
+const DOKU_PLUGIN = DOKU_BASE + 'lib/plugins/';
 
 // id of the clock face.
 // DONT CHANGE THIS UNLESS YOU KNOW WHAT YOU ARE DOING!
 const WRAP_ID = 'clock_wrapper';
 const DRAW_ID = 'dw_clock_object';
 
-const CLOCK_DATE = 'clock_date';
-const CLOCK_TIME = 'clock_time';
+const CLOCK_STYLE = 'clock_style';
+const CLOCK_DATE  = 'clock_date';
+const CLOCK_TIME  = 'clock_time';
 
 // 'smooth' or 'ticktack'
 const clock_style = 'smooth';
@@ -24,6 +25,16 @@ const clock_style = 'smooth';
 // timer object
 let dwClockTimer;
 
+// resize event
+window.addEventListener('resize', () => {
+    const elem = document.querySelector(`#${WRAP_ID}`);
+    if (elem.checkVisibility()) { return; }
+
+    document.head.querySelector(`.${CLOCK_STYLE}`).remove();
+    dwClockTimer.animation_hands();
+});
+
+//
 class dwClock {
     constructor() {
         this.m_time = new Date();
@@ -144,6 +155,7 @@ jQuery(() => {
             const HH  = (360 / 12) * this.hours() + (mm / 12);
 
             const animation = document.createElement('style');
+            animation.classList.add(CLOCK_STYLE);
             animation.innerHTML = `
             @keyframes rotate-s {
                 0% { transform: rotate(${ss}deg); }
@@ -187,7 +199,7 @@ jQuery(() => {
 
                 second.style.transform = `rotate(${ss}deg)`;
                 minute.style.transform = `rotate(${mm}deg)`;
-                hour.style.transform   = `rotate(${HH}deg)`;
+                hour.style.transform = `rotate(${HH}deg)`;
             }
         }
     }
