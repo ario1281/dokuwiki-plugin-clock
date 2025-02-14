@@ -25,16 +25,6 @@ const clock_style = 'smooth';
 // timer object
 let dwClockTimer;
 
-// resize event
-window.addEventListener('resize', () => {
-    const elem = document.querySelector(`#${WRAP_ID}`);
-    if (elem.checkVisibility()) { return; }
-
-    document.head.querySelector(`.${CLOCK_STYLE}`).remove();
-    dwClockTimer.animation_hands();
-});
-
-//
 class dwClock {
     constructor() {
         this.m_time = new Date();
