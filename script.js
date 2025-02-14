@@ -25,6 +25,16 @@ const clock_style = 'smooth';
 // timer object
 let dwClockTimer;
 
+// resize event
+window.addEventListener('resize', () => {
+    const elem = document.querySelector(`#${WRAP_ID}`);
+    if (elem.checkVisibility()) { return; }
+
+    document.head.querySelector(`.${CLOCK_STYLE}`).remove();
+    dwClockTimer.animation_hands();
+});
+
+//
 class dwClock {
     constructor() {
         this.m_time = new Date();
@@ -122,11 +132,11 @@ jQuery(() => {
             // init
             const second = document.createElement('div');
             const minute = document.createElement('div');
-            const hour   = document.createElement('div');
+            const hour = document.createElement('div');
 
             second.className = 'hand second';
             minute.className = 'hand minute';
-            hour.className   = 'hand hour';
+            hour.className = 'hand hour';
 
             this.m_eTime.appendChild(second);
             this.m_eTime.appendChild(minute);
@@ -140,9 +150,9 @@ jQuery(() => {
         animation_hands() {
             //
             const fff = (360 / 1000) * this.milliseconds();
-            const ss  = (360 / 60) * this.seconds() + (fff / 60);
-            const mm  = (360 / 60) * this.minutes() + (ss / 60);
-            const HH  = (360 / 12) * this.hours() + (mm / 12);
+            const ss = (360 / 60) * this.seconds() + (fff / 60);
+            const mm = (360 / 60) * this.minutes() + (ss / 60);
+            const HH = (360 / 12) * this.hours() + (mm / 12);
 
             const animation = document.createElement('style');
             animation.classList.add(CLOCK_STYLE);
@@ -164,11 +174,11 @@ jQuery(() => {
             //
             const second = this.m_eTime.querySelector('.hand.second');
             const minute = this.m_eTime.querySelector('.hand.minute');
-            const hour   = this.m_eTime.querySelector('.hand.hour');
+            const hour = this.m_eTime.querySelector('.hand.hour');
 
             second.style.animation = `rotate-s ${60}s linear infinite`;
             minute.style.animation = `rotate-m ${60 * 60}s linear infinite`;
-            hour.style.animation   = `rotate-h ${60 * 60 * 12}s linear infinite`;
+            hour.style.animation = `rotate-h ${60 * 60 * 12}s linear infinite`;
         }
 
         display_time() {
@@ -181,7 +191,7 @@ jQuery(() => {
             if (clock_style.includes('ticktack')) {
                 const second = this.m_eTime.querySelector('.hand.second');
                 const minute = this.m_eTime.querySelector('.hand.minute');
-                const hour   = this.m_eTime.querySelector('.hand.hour');
+                const hour = this.m_eTime.querySelector('.hand.hour');
 
                 const ss = (360 / 60) * this.seconds();
                 const mm = (360 / 60) * this.minutes() + (ss / 60);
