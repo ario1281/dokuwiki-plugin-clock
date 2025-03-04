@@ -268,8 +268,8 @@ jQuery(() => {
         }
 
         update_binary(name, time) {
-            const tens_elem = this.m_eTime.querySelector(`${name} .tens`);
-            const ones_elem = this.m_eTime.querySelector(`${name} .ones`);
+            const tens_elem = this.m_eTime.querySelector(`.${name} .tens`);
+            const ones_elem = this.m_eTime.querySelector(`.${name} .ones`);
 
             const tens = this.number_place(time, 2).toString(2).padStart(4, '0');
             const ones = this.number_place(time, 1).toString(2).padStart(4, '0');
@@ -295,7 +295,7 @@ jQuery(() => {
         }
     }
 
-    // analog or digital
+    // clock style
     dwClockTimer = new dwClock();
     const elem = document.querySelector(`#${WRAP_ID} .${CLOCK_TIME}`);
     if (elem.className.includes('analog')) {

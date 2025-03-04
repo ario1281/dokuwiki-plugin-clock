@@ -6,7 +6,7 @@
 **/
 
 $meta['clock_type']       = array('multichoice',
-	'_choices' => array('digital', 'analog')
+	'_choices' => array('digital', 'analog', 'binary')
 	);
 $meta['clock_style']      = array('string');
 $meta['clock_is_date']    = array('onoff');
