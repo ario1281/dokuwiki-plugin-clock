@@ -5,7 +5,7 @@
  * @author:     ario1281 <yakumo.ario [at] gmail.com>
 **/
 
-$lang['clock_type']       = "表示される時計の種類： digital or analog";
+$lang['clock_type']       = "表示される時計の種類： digital, analog or binary";
 $lang['clock_style']      = "クラス名に対応するCSSで時計を装飾を装飾（デフォルトは<code>plain</code>）。<br/>スタイルの例についてはPluginのドキュメントを参照。";
 $lang['clock_is_date']    = "日付の有効／無効。";
 $lang['clock_fmt_date']   = "日付フォーマットを指定します（デフォルトは<code>%Y/%M/%D(%W)</code>）。 <ul><li>%Y: 年 (year) <li>%M: 月 (month) <li>%D: 日 (date) <li>%W: 曜日 (day of week) </ul>";

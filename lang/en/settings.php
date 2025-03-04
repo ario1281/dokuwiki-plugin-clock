@@ -5,7 +5,7 @@
  * @author:     Luis Machuca Bezzaza <luis.machuca [at] gulix.cl>
 **/
 
-$lang['clock_type']       = "The kind of clock displayed: digital or analog.";
+$lang['clock_type']       = "The kind of clock displayed: digital, analog or binary.";
 $lang['clock_style']      = "Decorate clock with this CSS class name, defaults to '<tt>plain</tt>'.<br/>Check plugin documentation for example styles.";
 $lang['clock_is_date']    = "Enable/disable the Date.";
 $lang['clock_fmt_date']   = "Specify the Date format, defaults to <code>%Y/%M/%D(%W)</code>. <ul><li>%Y: year <li>%M: month <li>%D: date <li>%W: day of week </ul>";

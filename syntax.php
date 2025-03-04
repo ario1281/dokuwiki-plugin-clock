@@ -4,8 +4,8 @@
  * @brief      Show a clock in wikipage
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Luis Machuca Bezzaza <luis.machuca [at] gulix.cl>
- * @version    3.0
- * @date       2025-02-14
+ * @version    3.1
+ * @date       2025-03-04
  * @link       http://www.dokuwiki.org/plugin:clock
  *
  *  This plugin's purpose is to display a clock using both 

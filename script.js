@@ -3,8 +3,8 @@
  * @brief      Javascript for the Clock Plugin
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Luis Machuca Bezzaza <luis.machuca [at] gulix.cl>
- * @version    3.0
- * @date       2025-02-14
+ * @version    3.1
+ * @date       2025-03-04
  * @link       http://www.dokuwiki.org/plugin:clock
 **/
 
@@ -129,10 +129,11 @@ jQuery(() => {
             this.m_eTime.appendChild(dials);
         }
         create_hands() {
-            // init
             const second = document.createElement('div');
             const minute = document.createElement('div');
             const hour   = document.createElement('div');
+
+            let height;
 
             second.className = 'hand second';
             minute.className = 'hand minute';
@@ -142,8 +143,25 @@ jQuery(() => {
             this.m_eTime.appendChild(minute);
             this.m_eTime.appendChild(hour);
 
+            // resize height
+            height = `${this.m_eTime.scrollWidth * 0.75}px`;
+            this.m_eTime.style.height = height;
+            window.addEventListener('resize', () => {
+                height = `${this.m_eTime.scrollWidth * 0.75}px`;
+                this.m_eTime.style.height = height;
+            });
+
             if (clock_style.includes('smooth')) {
+                // update animation
                 this.animation_hands();
+
+                window.addEventListener('resize', () => {
+                    const elem = document.querySelector(`#${WRAP_ID}`);
+                    if (elem.checkVisibility()) { return; }
+
+                    document.head.querySelector(`.${CLOCK_STYLE}`).remove();
+                    this.animation_hands();
+                });
             }
         }
 
@@ -182,12 +200,6 @@ jQuery(() => {
         }
 
         display_time() {
-            // resize height
-            this.m_eTime.style.height = `${this.m_eTime.scrollWidth * 0.75}px`;
-
-            if (clock_style.includes('smooth')) {
-
-            }
             if (clock_style.includes('ticktack')) {
                 const second = this.m_eTime.querySelector('.hand.second');
                 const minute = this.m_eTime.querySelector('.hand.minute');
@@ -216,6 +228,72 @@ jQuery(() => {
             this.m_eTime.innerHTML = ` ${fmt} `;
         }
     }
+    class dwClock_Binary extends dwClock {
+        init() {
+            this.m_eTime.innerHTML = '';
+            this.create_binary('hour');
+            this.create_binary('minute');
+            this.create_binary('second');
+
+            super.init();
+        }
+        create_binary(name) {
+            const bin_elem = document.createElement('div');
+            const tens_elem = document.createElement('div');
+            const ones_elem = document.createElement('div');
+
+            bin_elem.classList.add(name);
+            tens_elem.classList.add('tens');
+            ones_elem.classList.add('ones');
+
+            for (var i = 0; i < 4; i++) {
+                const elem = document.createElement('div');
+                elem.classList.add('dial');
+                elem.style.visibility = 'hidden';
+
+                tens_elem.appendChild(elem.cloneNode(true));
+                ones_elem.appendChild(elem.cloneNode(true));
+            }
+
+            bin_elem.appendChild(tens_elem);
+            bin_elem.appendChild(ones_elem);
+
+            this.m_eTime.appendChild(bin_elem);
+        }
+
+        display_time() {
+            this.update_binary('hour', this.hours());
+            this.update_binary('minute', this.minutes());
+            this.update_binary('second', this.seconds());
+        }
+
+        update_binary(name, time) {
+            const tens_elem = this.m_eTime.querySelector(`${name} .tens`);
+            const ones_elem = this.m_eTime.querySelector(`${name} .ones`);
+
+            const tens = this.number_place(time, 2).toString(2).padStart(4, '0');
+            const ones = this.number_place(time, 1).toString(2).padStart(4, '0');
+
+            for (var i = 0; i < 4; i++) {
+                const ten = tens_elem.childNodes[i];
+                const one = ones_elem.childNodes[i];
+
+                ten.style.visibility = 'hidden';
+                one.style.visibility = 'hidden';
+
+                if (parseInt(tens[i])) {
+                    ten.style.visibility = 'visible';
+                }
+                if (parseInt(ones[i])) {
+                    one.style.visibility = 'visible';
+                }
+            }
+        }
+
+        number_place(num, place) {
+            return (Math.floor(num / Math.pow(10, place - 1))) % 10;
+        }
+    }
 
     // analog or digital
     dwClockTimer = new dwClock();
@@ -226,9 +304,12 @@ jQuery(() => {
     if (elem.className.includes('digital')) {
         dwClockTimer = new dwClock_Digital();
     }
+    if (elem.className.includes('binary')) {
+        dwClockTimer = new dwClock_Binary();
+    }
 
     // ticks the clock
-    setInterval(() => { dwClockTimer.update(); });
+    setInterval(() => { dwClockTimer.update(); }, 500);
 });
 
 // end of clock/script.js

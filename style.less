@@ -3,19 +3,14 @@
  * @brief      Default styles for the "clock" plugin
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Luis Machuca Bezzaza  <luis.machuca [at] gulix.cl>
- * @version    3.0
- * @date       2025-02-14
+ * @version    3.1
+ * @date       2025-03-04
  * @link       http://www.dokuwiki.org/plugin:clock
 **/
 #clock_wrapper {
   /* variables */
   @clock_border: 2px solid gray;
   @clock_font_size: 24px;
-
-  @clock_bin_font_size: large;
-  @clock_bin_digit0: '○';
-  @clock_bin_digit1: '●';
-
 
   /* base style */
   padding: 0;
@@ -135,6 +130,29 @@
           }
         }
       }
+      /* style of binary clock */
+      &.binary {
+        display: flex;
+
+        &>div {
+          display: inherit;
+          flex-direction: row;
+          margin: auto;
+
+          &>.ones,
+          &>.tens {
+            display: inherit;
+            flex-direction: column;
+
+            .dial {
+              display: inherit;
+              width: 2.5em;
+              height: 2.5em;
+              margin: 2.5px;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -186,6 +204,12 @@
           &.second {
             background-color: @custom_color_alt;
           }
+        }
+      }
+      /* style of binary clock */
+      &.binary {
+        .dial {
+          background-color: @custom_color;
         }
       }
     }
@@ -246,6 +270,12 @@
             background-color: @custom_color_alt;
             box-shadow: @custom_shadow;
           }
+        }
+      }
+      /* style of binary clock */
+      &.binary {
+        .dial {
+          background-color: @custom_color;
         }
       }
     }
@@ -322,6 +352,13 @@
             background-color: @custom_color;
             box-shadow: @custom_shadow;
           }
+        }
+      }
+      /* style of binary clock */
+      &.binary {
+        .dial {
+          background-color: @custom_color;
+          box-shadow: @custom_shadow;
         }
       }
     }
@@ -408,6 +445,13 @@
           }
         }
       }
+      /* style of binary clock */
+      &.binary {
+        .dial {
+          background-color: @custom_color;
+          box-shadow: @custom_shadow;
+        }
+      }
     }
   }
 }
@@ -437,7 +481,7 @@
 
   /* base style */
   background-color: @custom_bg_color;
-  border: 4px solid var(--custom-border-color);
+  border: 4px solid @custom_border_color;
 
   #dw_clock_object {
     font-family:
@@ -477,6 +521,15 @@
             background-color: @custom_color_alt;
             box-shadow: @custom_shadow2_alt;
           }
+        }
+      }
+      /* style of binary clock */
+      &.binary {
+        .dial {
+          background-color: @custom_color;
+          box-shadow:
+            @custom_shadow1,
+            @custom_shadow1_alt;
         }
       }
     }
