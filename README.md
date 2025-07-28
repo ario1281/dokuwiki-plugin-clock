@@ -3,8 +3,7 @@
 このプラグインは、arcticのようなサイドバー対応のテンプレートと組み合わせると特に便利です。
 
 ## Download and Installation
-拡張マネージャーを使用してプラグインを検索し、インストールしてください。
-
+拡張マネージャーを使用してプラグインを検索し、インストールしてください。  
 手動でプラグインをインストるする場合は"プラグイン"を参照してください。
 
 ## Utage
@@ -58,14 +57,14 @@
 プラグインは設定マネージャー経由で設定されます。
 以下、オプションの簡単な説明です。
 
-- `clock_type`：使用する時計の種類を設定します。
+- `clock_type`：表示される時計の種類を設定します。
   - `digital`
   - `analog`
   - `binary`
-- `clock_style`：プラグインのスタイル設定に使用されるクラス名を設定します。詳しくはStylesを確認してください。
-- `clock_is_date`：
-- `clock_fmt_date`：
-- `clock_fmt_time`：
-- `clock_is_helpbar`：
-- `clock_infopage`：
-- `nojs_fallback`：
+- `clock_style`：クラス名に対応するCSSで時計を装飾を装飾を行います。<br>スタイルの例については`Styles`を参照。
+- `clock_is_date`：日付の有効／無効を設定します。
+- `clock_fmt_date`：日付フォーマットを指定します。
+- `clock_fmt_time`：時間フォーマットを指定します。
+- `clock_is_helpbar`：ヘルプバーの有効／無効を設定します。
+- `clock_infopage`：指定された「wikiページ」へのリンクがヘルプバーに表示されます。
+- `nojs_fallback`：JavaScriptが無効の場合、どのように処理するかを指定します。
