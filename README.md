@@ -15,6 +15,20 @@
 
 ### Demo
 
+#### Types
+<table>
+  <tr>
+    <td><img alt='digital' src='' /></td>
+    <td><img alt='analog' src='' /></td>
+    <td><img alt='binary' src='' /></td>
+  </tr>
+  <tr>
+    <td> Digital Clock </td>
+    <td> Analog Clock </td>
+    <td> Binary Clock </td>
+  </tr>
+</table>
+
 #### Styles
 <table>
   <tr>
@@ -40,20 +54,6 @@
   <tr>
     <td><img alt='bluebox' src='' /></td>
     <td>bluebox</td>
-  </tr>
-</table>
-
-#### Sneak Peek
-<table>
-  <tr>
-    <td><img alt='digital' src='' /></td>
-    <td><img alt='analog' src='' /></td>
-    <td><img alt='binary' src='' /></td>
-  </tr>
-  <tr>
-    <td> Digital Clock </td>
-    <td> Analog Clock </td>
-    <td> Binary Clock </td>
   </tr>
 </table>
 
