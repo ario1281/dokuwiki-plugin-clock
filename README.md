@@ -66,7 +66,7 @@ and more...
   - `digital`        ：デジタル時計
   - `analog`         ：アナログ時計
   - `binary`         ：バイナリ時計
-- `clock_style`      ：クラス名に対応するCSSで時計を装飾を装飾を行います。<br>スタイルの例については`Styles`を参照。
+- `clock_style`      ：クラス名に対応するCSSで時計を装飾を装飾を行います。<br>スタイルの例については[Styles](#styles)を参照。
 - `clock_is_date`    ：日付の有効／無効を設定します。
 - `clock_fmt_date`   ：日付フォーマットを指定します。
 - `clock_fmt_time`   ：時間フォーマットを指定します。
