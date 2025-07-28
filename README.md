@@ -58,7 +58,7 @@
 </table>
 and more...
 
-### Configuration
+## Configuration
 プラグインは設定マネージャー経由で設定されます。
 以下、オプションの簡単な説明です。
 
