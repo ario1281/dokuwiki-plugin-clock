@@ -56,6 +56,7 @@
     <td>bluebox</td>
   </tr>
 </table>
+and more...
 
 ### Configuration
 プラグインは設定マネージャー経由で設定されます。
