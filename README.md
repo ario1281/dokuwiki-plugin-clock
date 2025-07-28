@@ -62,11 +62,11 @@ and more...
 プラグインは設定マネージャー経由で設定されます。
 以下、オプションの簡単な説明です。
 
-- `clock_type`       ：表示される時計の種類を設定します。
+- `clock_type`       ：表示される時計の種類を設定します。<br>例については[Types](#types)を参照。
   - `digital`        ：デジタル時計
   - `analog`         ：アナログ時計
   - `binary`         ：バイナリ時計
-- `clock_style`      ：クラス名に対応するCSSで時計を装飾を装飾を行います。<br>スタイルの例については[Styles](#styles)を参照。
+- `clock_style`      ：クラス名に対応するCSSで時計を装飾を装飾を行います。<br>例については[Styles](#styles)を参照。
 - `clock_is_date`    ：日付の有効／無効を設定します。
 - `clock_fmt_date`   ：日付フォーマットを指定します。
 - `clock_fmt_time`   ：時間フォーマットを指定します。
