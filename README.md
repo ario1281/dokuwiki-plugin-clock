@@ -67,4 +67,4 @@
 - `clock_fmt_time`：時間フォーマットを指定します。
 - `clock_is_helpbar`：ヘルプバーの有効／無効を設定します。
 - `clock_infopage`：指定された「wikiページ」へのリンクがヘルプバーに表示されます。
-- `nojs_fallback`：JavaScriptが無効の場合、どのように処理するかを指定します。
+- `nojs_fallback`：JavaScriptが無効の場合、どのように処理するかを設定します。
