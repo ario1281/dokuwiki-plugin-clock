@@ -1,10 +1,10 @@
 # dokuwiki-plugin-clock
-**clock Plugin**は、Dokuwikiページに時間を視覚的に表示する機能を提供する。`CSS`と`JavaScript`を使用し、ブラウザに現在時間が表示される。
-このプラグインは、arcticのようなサイドバー対応のテンプレートと組み合わせると特に便利です。
+**clock Plugin**は、Dokuwikiページに[時間を視覚的に表示する機能](https://en.wikipedia.org/wiki/Clock)を提供する。`CSS`と`JavaScript`を使用し、ブラウザに現在時間が表示される。
+このプラグインは、[Arctic](https://www.dokuwiki.org/template:arctic)のようなサイドバー対応のテンプレートと組み合わせると特に便利です。
 
 ## Download and Installation
-拡張マネージャーを使用してプラグインを検索し、インストールしてください。  
-手動でプラグインをインストるする場合は"プラグイン"を参照してください。
+[Extension Manager](https://www.dokuwiki.org/plugin:extension)を使用してプラグインを検索し、インストールしてください。  
+手動でプラグインをインストるする場合は[Plugins](https://www.dokuwiki.org/plugins)を参照してください。
 
 ## Usage
 下記を<ins>単独で記述してください</ins>。
