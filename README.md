@@ -88,3 +88,7 @@ and more...
 独自の時計スタイルを作成するには、デフォルトスタイルを選択し、`$DOKU_CONF/userstyle.css `にコピーして、必要に応じて修正してください。
 クラス名を変更して、そのスタイルを構成マネージャーから使用するスタイルとして設定できます。
 
+## 参考資料
+- [respencer/dokuwiki-plugin-clock](https://github.com/respencer/dokuwiki-plugin-clock)
+- [dw-plugin-clock](https://chiselapp.com/user/lmachucab/repository/dokuwiki-plugin-clock/index)
+- [plugin:clock \[DokuWiki\]](https://www.dokuwiki.org/plugin:clock)
