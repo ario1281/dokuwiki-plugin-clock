@@ -185,3 +185,5 @@ class syntax_plugin_clock extends DokuWiki_Syntax_Plugin {
 		return "<span class=\"varidates\" $varidates></span>";
 	}
 }
+
+// end of clock/syntax.php
